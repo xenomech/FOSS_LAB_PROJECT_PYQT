@@ -1,10 +1,4 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file '56.ui'
-#
 # Created by: PyQt5 UI code generator 5.10.1
-#
-# WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import subprocess
@@ -48,7 +42,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        self.pushButton.clicked.connect(self.run)
+        self.pushButton.clicked.connect(self.run) #what the button does
 
 
     def retranslateUi(self, MainWindow):
@@ -57,12 +51,11 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Find"))
         self.label.setText(_translate("MainWindow", "Enter the command to be located :"))
         self.label_2.setText(_translate("MainWindow", "Location:"))
-    def run(self):
-        cmd="whereis " + str(self.plainTextEdit.toPlainText())
-        process = subprocess.Popen(
-            cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    def run(self):                                                #function to run a shell command
+        cmd="whereis " + str(self.plainTextEdit.toPlainText())    #cmd contains the whole shell command
+        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         location, err = process.communicate()
-        self.plainTextEdit_2.insertPlainText(str(location, "utf-8"))
+        self.plainTextEdit_2.insertPlainText(str(location, "utf-8")) #print output to the field
 
 if __name__ == "__main__":
     import sys
